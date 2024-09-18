@@ -1,21 +1,24 @@
 require 'rails_helper'
-user = User.new(
-  username: 'TestUsername',
-  email: 'testuser@mail.com',
-  password: 'password',
-  first_name: 'Test',
-  last_name: 'User',
-  prefecture: 'Hokkaido'
-)
 
 RSpec.describe User, type: :model do
-  it 'user has an email' do
-    expect(user.email).to eq('testuser@mail.com')
+  let!(:user) do
+    User.new(
+      username: 'TestUsername',
+      email: 'testuser@mail.com',
+      password: 'password',
+      first_name: 'Test',
+      last_name: 'User',
+      prefecture: 'Hokkaido'
+    )
   end
 
   context 'username validations' do
     it 'user has a username' do
       expect(user.username).to eq('TestUsername')
+    end
+
+    it 'user has an email' do
+      expect(user.email).to eq('testuser@mail.com')
     end
 
     it 'invalid user without a username' do
